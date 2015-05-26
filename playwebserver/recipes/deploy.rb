@@ -10,7 +10,8 @@ node[:opsworks][:applications].each do |app|
   log "\n\n\n#{app[:name]}\n#{app[:application_type]}\n#{app[:slug_name]}\n\n\n"
 end
 
-log "\n\nRexter testing:\n\n#{node[:deploy]['hyyqsite'][:scm][:scm_type]} - #{node[:deploy]['hyyqsite'][:scm][:repository]}\n\n"
- 
+unless node[:deploy]['hyyqsite'].nil?
+  log "\n\nRexter testing:\n\n#{node[:deploy]['hyyqsite'][:scm][:scm_type]} - #{node[:deploy]['hyyqsite'][:scm][:repository]}\n\n"
+end
 
 Chef::Log.info("==================================== playwebserver::deploy - END ===================================== \n ")
