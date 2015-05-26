@@ -11,13 +11,24 @@ Chef::Log.info("=================================== playwebserver::setup - START
   end
 end
 
+Chef::Log.debug("========================== DEBUG installing apache2 ===========================")
 
+package 'apache2' do
+  action :install
+end
 
 package "libapache2-mod-proxy-html"
 package "libxml2-dev"
 package "libapache2-mod-proxy-html"
 package "libxml2-dev"
- 
+package "git" 
+package "build-essential"
+package "zip"
+
+execute 'imtesting' do
+  command "touch /home/ubuntu/wwwww"
+  action :run
+end
 
 =begin
 
@@ -25,11 +36,9 @@ this is a comment line
 
 =end
 
-Chef::Log.debug("========================== DEBUG installing apache2 ===========================")
 
-package 'apache2' do
-  action :install
-end
+
+
 
 Chef::Log.info("=================================== playwebserver::setup - END   ==================================== \n ")
 
