@@ -16,16 +16,16 @@ unless node[:deploy]['hyyqsite'].nil?
   log "\n\nRexter testing:\n\n#{node[:deploy]['hyyqsite'][:scm][:scm_type]} - #{node[:deploy]['hyyqsite'][:scm][:repository]}\n\n"
 end
 
-cookbook_file "/tmp/download_dist" do
-  source "download_dist"
+cookbook_file "/tmp/deploy_dist" do
+  source "deployhyyq"
   mode 0755
   user 'ubuntu'
 end
 
-execute "download_dist" do
+execute "run_deploy" do
   user "ubuntu"
   cwd "/tmp"
-  command "./deployhyyq"
+  command "./deploy_dist"
 end
 
 log "\n\n==================================== playwebserver::deploy - END ===================================== \n"
