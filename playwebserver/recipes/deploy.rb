@@ -17,7 +17,7 @@ unless node[:deploy]['hyyqsite'].nil?
 end
 
 cookbook_file "/tmp/deploy_dist" do
-  source "deployhyyq"
+  source "deployhyyq.sh"
   mode 0755
   user 'ubuntu'
 end
