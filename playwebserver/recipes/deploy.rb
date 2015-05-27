@@ -1,9 +1,11 @@
-Chef::Log.info("=================================== playwebserver::deploy - START ==================================== \n ")
+
+
+log "\n\n=================================== playwebserver::deploy - START ==================================== \n"
 
 
 
 
-Chef::Log.info("=================================== playwebserver::deploy - RUNNING ==================================== \n ")
+log "\n\n=================================== playwebserver::deploy - RUNNING ==================================== \n"
 
 
 node[:opsworks][:applications].each do |app|
@@ -20,4 +22,4 @@ cookbook_file "download_dist" do
   user 'ubuntu'
 end
 
-Chef::Log.info("==================================== playwebserver::deploy - END ===================================== \n ")
+log "\n\n==================================== playwebserver::deploy - END ===================================== \n"
