@@ -63,7 +63,6 @@ script "install_activator" do
     mv activator-1.3.2 /opt/activator
     echo "export PATH=$PATH:/opt/activator" >> /home/ubuntu/.bashrc
     source /home/ubuntu/.bashrc
-    activator
   EOH
 end
 
