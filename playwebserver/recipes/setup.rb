@@ -40,7 +40,7 @@ this is a comment line
 =end
 
 execute 'pull out build' do
-  command "s3 cp s3://rexterdownload/tools/typesafe-activator-1.3.2.zip /home/ubuntu/download/"
+  command "aws s3 cp s3://rexterdownload/tools/typesafe-activator-1.3.2.zip /home/ubuntu/download/"
   user 'root'
 end
 
