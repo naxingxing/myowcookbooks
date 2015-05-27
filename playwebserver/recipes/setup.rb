@@ -1,6 +1,12 @@
 
 
 Chef::Log.info("=================================== playwebserver::setup - START ==================================== \n ")
+Chef::Log.info("\n#{node['playwebserver']['ubuntuhome']}#{node['createdir']['download_dir']}\n")
+Chef::Log.info("\n#{node['playwebserver']['ubuntuhome']}#{node['createdir']['deployment_dir']}\n")
+Chef::Log.info("\n#{node['createdir']['mode']}\n")
+Chef::Log.info("\n#{node['createdir']['owner']}\n")
+Chef::Log.info("\n#{node['createdir']['group']}\n")
+
 ["#{node['playwebserver']['ubuntuhome']}#{node['createdir']['download_dir']}", "#{node['playwebserver']['ubuntuhome']}#{node['createdir']['deployment_dir']}"].each do |path|
   directory path do
     mode #{node['createdir']['mode']}
@@ -31,7 +37,7 @@ package "zip"
 
 script "install_activator" do
   interpreter "bash"
-  user "root"
+  user "ubuntu"
   cwd "/tmp"
   code <<-EOH
     #insert bash script
@@ -50,19 +56,18 @@ this is a comment line
 
 execute 'pull out build' do
   command "aws s3 cp s3://rexterdownload/tools/typesafe-activator-1.3.2.zip /home/ubuntu/download/"
-  user 'root'
+  user 'ubuntu'
 end
 
 script "install_activator" do
   interpreter "bash"
-  user "root"
+  user "ubuntu"
   cwd "/tmp"
   code <<-EOH
     #insert bash script
     cd /home/ubuntu/download && unzip typesafe-activator-1.3.2.zip
     mv activator-1.3.2 /opt/activator
     echo "export PATH=$PATH:/opt/activator" >> /home/ubuntu/.bashrc
-    source /home/ubuntu/.bashrc
   EOH
 end
 
