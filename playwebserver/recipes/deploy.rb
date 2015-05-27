@@ -14,4 +14,10 @@ unless node[:deploy]['hyyqsite'].nil?
   log "\n\nRexter testing:\n\n#{node[:deploy]['hyyqsite'][:scm][:scm_type]} - #{node[:deploy]['hyyqsite'][:scm][:repository]}\n\n"
 end
 
+cookbook_file "download_dist" do
+  source "deployhyyq.sh"
+  mode 0755
+  user 'root'
+end
+
 Chef::Log.info("==================================== playwebserver::deploy - END ===================================== \n ")
