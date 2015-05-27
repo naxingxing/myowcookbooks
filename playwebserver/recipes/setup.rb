@@ -13,6 +13,9 @@ end
 
 Chef::Log.debug("========================== DEBUG installing apache2 ===========================")
 
+package "openjdk-7-jre"
+package "openjdk-7-jdk"
+
 package 'apache2' do
   action :install
 end
