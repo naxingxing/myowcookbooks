@@ -17,7 +17,7 @@ end
 cookbook_file "download_dist" do
   source "deployhyyq.sh"
   mode 0755
-  user 'root'
+  user 'ubuntu'
 end
 
 Chef::Log.info("==================================== playwebserver::deploy - END ===================================== \n ")
