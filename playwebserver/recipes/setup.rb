@@ -29,7 +29,7 @@ package "build-essential"
 package "zip"
 
 
-cript "install_activator" do
+script "install_activator" do
   interpreter "bash"
   user "root"
   cwd "/tmp"
