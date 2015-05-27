@@ -28,10 +28,19 @@ package "git"
 package "build-essential"
 package "zip"
 
-curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-sudo python get-pip.py
-sudo pip install awscli
-sudo pip install --upgrade awscli
+
+cript "install_activator" do
+  interpreter "bash"
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+    #insert bash script
+    curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+    python get-pip.py
+    pip install awscli
+    pip install --upgrade awscli
+  EOH
+end
 
 =begin
 
