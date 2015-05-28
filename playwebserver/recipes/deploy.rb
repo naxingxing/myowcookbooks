@@ -23,16 +23,16 @@ unless node[:deploy]['hyyqsite'].nil?
   end
 end
 
-#cookbook_file "/tmp/deploy_dist" do
-#  source "deployhyyq.sh"
-#  mode 0755
-#  user 'ubuntu'
-#end
+cookbook_file "/tmp/deploy_dist" do
+  source "deployhyyq.sh"
+  mode 0755
+  user 'ubuntu'
+end
 
-#execute "run_deploy" do
-#  user "ubuntu"
-#  cwd "/tmp"
-#  command "./deploy_dist"
-#end
+execute "run_deploy" do
+  user "ubuntu"
+  cwd "/tmp"
+  command "./deploy_dist"
+end
 
 log "\n\n==================================== playwebserver::deploy - END ===================================== \n"
