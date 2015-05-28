@@ -14,18 +14,25 @@ end
 
 unless node[:deploy]['hyyqsite'].nil?
   log "\n\nRexter testing:\n\n#{node[:deploy]['hyyqsite'][:scm][:scm_type]} - #{node[:deploy]['hyyqsite'][:scm][:repository]}\n\n"
+  git "#{node[:deploy]['hyyqsite'][:scm][:repository]}" do
+    repository node[:deploy]['hyyqsite'][:scm][:repository]
+    action :sync
+    user "ubuntu"
+    group "ubuntu"
+    destination "/home/ubuntu/download/"
+  end
 end
 
-cookbook_file "/tmp/deploy_dist" do
-  source "deployhyyq.sh"
-  mode 0755
-  user 'ubuntu'
-end
+#cookbook_file "/tmp/deploy_dist" do
+#  source "deployhyyq.sh"
+#  mode 0755
+#  user 'ubuntu'
+#end
 
-execute "run_deploy" do
-  user "ubuntu"
-  cwd "/tmp"
-  command "./deploy_dist"
-end
+#execute "run_deploy" do
+#  user "ubuntu"
+#  cwd "/tmp"
+#  command "./deploy_dist"
+#end
 
 log "\n\n==================================== playwebserver::deploy - END ===================================== \n"

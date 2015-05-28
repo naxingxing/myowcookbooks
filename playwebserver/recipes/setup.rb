@@ -35,7 +35,19 @@ package "build-essential"
 package "zip"
 
 
-script "install_activator" do
+script "install_awscli" do
+  interpreter "bash"
+  user "ubuntu"
+  cwd "/tmp"
+  code <<-EOH
+    #insert bash script
+    a2enmod proxy proxy_html proxy_http proxy_ajp
+    a2enmod rewrite deflate headers proxy_balancer
+    a2enmod headers proxy_balancer proxy_connect
+  EOH
+end
+
+script "install_awscli" do
   interpreter "bash"
   user "ubuntu"
   cwd "/tmp"
