@@ -19,7 +19,7 @@ unless node[:deploy]['hyyqsite'].nil?
     action :sync
     user "ubuntu"
     group "ubuntu"
-    destination "/home/ubuntu/download/"
+    destination "/home/ubuntu/download/hyyqsite"
   end
 end
 
