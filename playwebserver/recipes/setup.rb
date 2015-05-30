@@ -9,9 +9,9 @@ Chef::Log.info("\n#{node['createdir']['group']}\n")
 
 ["#{node['playwebserver']['ubuntuhome']}#{node['createdir']['download_dir']}", "#{node['playwebserver']['ubuntuhome']}#{node['createdir']['deployment_dir']}"].each do |path|
   directory path do
-    mode #{node['createdir']['mode']}
-    owner #{node['createdir']['owner']}
-    group #{node['createdir']['group']}
+    mode "#{node['createdir']['mode']}"
+    owner "#{node['createdir']['owner']}"
+    group "#{node['createdir']['group']}"
     recursive true
     action :create
   end
@@ -67,11 +67,13 @@ this is a comment line
 execute 'pull out build' do
   command "aws s3 cp s3://rexterdownload/tools/typesafe-activator-1.3.2.zip /home/ubuntu/download/"
   user 'ubuntu'
+  group 'ubuntu'
 end
 
 script "install_activator" do
   interpreter "bash"
   user "ubuntu"
+  group "ubuntu"
   cwd "/tmp"
   code <<-EOH
     #insert bash script
