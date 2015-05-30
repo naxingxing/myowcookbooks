@@ -10,7 +10,7 @@ log "\n\n=================================== playwebserver::deploy - RUNNING ===
 unless node[:project].nil?
   log "\n\n\n\n\nThis is awesome!!! \n #{node[:project][:name]} - #{node[:project][:domain]}\n\n\n\n"
   #log "\n\n#{node[:deploy][node[:project][:name]][:scm][:repository]} - good test 1\n\n"
-  unless app.nil?
+  unless node[:opsworks][:applications].nil?
     node[:opsworks][:applications].each do |app|
       log "#{app[:name]} #{app[:application_type]} good test"
       if app[:name] == node[:project][:name]
@@ -35,7 +35,7 @@ end
 
 cookbook_file "/tmp/deploy_dist" do
   source "deployhyyq.sh"
-  mode 0755
+  mode '0755'
   user 'ubuntu'
 end
 
