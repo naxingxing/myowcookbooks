@@ -7,13 +7,14 @@ log "\n\n=================================== playwebserver::deploy - START =====
 
 log "\n\n=================================== playwebserver::deploy - RUNNING ==================================== \n"
 
-
+unless node[:project].nil?
+  log "\n\n\n\n\nThis is awesome!!! \n #{node[:project][:name]} - #{node[:project][:domain]}\n\n\n\n"
+else
 node[:opsworks][:applications].each do |app|
-  log "\n\n\n#{app[:name]}\n#{app[:application_type]}\n#{app[:slug_name]}\n\n\n"
+  log "\n\n\n-app name: #{app[:name]}\n-application_type: #{app[:application_type]}\n-slug_name: #{app[:slug_name]}\n\n\n"
 end
 
 unless node[:deploy]['hyyqsite'].nil?
-  log "\n\nRexter testing:\n\n#{node[:deploy]['hyyqsite'][:scm][:scm_type]} - #{node[:deploy]['hyyqsite'][:scm][:repository]}\n\n"
   git "#{node[:deploy]['hyyqsite'][:scm][:repository]}" do
     repository node[:deploy]['hyyqsite'][:scm][:repository]
     action :sync
@@ -34,5 +35,5 @@ execute "run_deploy" do
   cwd "/tmp"
   command "./deploy_dist"
 end
-
+end
 log "\n\n==================================== playwebserver::deploy - END ===================================== \n"

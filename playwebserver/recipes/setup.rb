@@ -37,7 +37,6 @@ package "zip"
 
 script "install_awscli" do
   interpreter "bash"
-  user "ubuntu"
   cwd "/tmp"
   code <<-EOH
     #insert bash script
@@ -49,7 +48,6 @@ end
 
 script "install_awscli" do
   interpreter "bash"
-  user "ubuntu"
   cwd "/tmp"
   code <<-EOH
     #insert bash script
