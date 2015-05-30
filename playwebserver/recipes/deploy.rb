@@ -10,11 +10,9 @@ log "\n\n=================================== playwebserver::deploy - RUNNING ===
 unless node[:project].nil?
   log "\n\n\n\n\nThis is awesome!!! \n #{node[:project][:name]} - #{node[:project][:domain]}\n\n\n\n"
   #log "\n\n#{node[:deploy][node[:project][:name]][:scm][:repository]} - good test 1\n\n"
-  apps = search(:node, "deploy:#{node[:project][:name]}")
-  apps.each do |key, array|
-    if key == "#{node[:project][:name]}"
-      log key, " hooray\n\n"
-      log "\n\napp - good test 2\n\n"
+  unless app.nil?
+    app.each do |one|
+      log "#{app[:name]} #{app[:application_type]} good test"
     end
   end
 else
