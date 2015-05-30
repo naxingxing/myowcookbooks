@@ -9,6 +9,9 @@ log "\n\n=================================== playwebserver::deploy - RUNNING ===
 
 unless node[:project].nil?
   log "\n\n\n\n\nThis is awesome!!! \n #{node[:project][:name]} - #{node[:project][:domain]}\n\n\n\n"
+  log "\n\n#{node[:deploy]['#{node[:project][:name]}'][:scm][:repository]} - good test 1\n\n"
+  pname = "#{node[:project][:name]}"
+  log "\n\n#{node[:deploy][pname][:scm][:repository]} - good test 2\n\n"
 else
 node[:opsworks][:applications].each do |app|
   log "\n\n\n-app name: #{app[:name]}\n-application_type: #{app[:application_type]}\n-slug_name: #{app[:slug_name]}\n\n\n"
