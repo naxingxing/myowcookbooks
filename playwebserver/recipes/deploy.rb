@@ -9,7 +9,7 @@ log "\n\n=================================== playwebserver::deploy - RUNNING ===
 
 unless node[:project].nil?
   log "\n\n\n\n\nThis is awesome!!! \n #{node[:project][:name]} - #{node[:project][:domain]}\n\n\n\n"
-  log "\n\n#{node[:deploy]['#{node[:project][:name]}'][:scm][:repository]} - good test 1\n\n"
+  log "\n\n#{node[:deploy][node[:project][:name]][:scm][:repository]} - good test 1\n\n"
   pname = "#{node[:project][:name]}"
   log "\n\n#{node[:deploy][pname][:scm][:repository]} - good test 2\n\n"
 else
