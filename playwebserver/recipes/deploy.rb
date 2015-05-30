@@ -11,8 +11,11 @@ unless node[:project].nil?
   log "\n\n\n\n\nThis is awesome!!! \n #{node[:project][:name]} - #{node[:project][:domain]}\n\n\n\n"
   #log "\n\n#{node[:deploy][node[:project][:name]][:scm][:repository]} - good test 1\n\n"
   unless app.nil?
-    app.each do |one|
+    node[:opsworks][:applications].each do |app|
       log "#{app[:name]} #{app[:application_type]} good test"
+      if app[:name] == node[:project][:name]
+        log "\n\nhello world!!!\n\n"
+      end
     end
   end
 else
