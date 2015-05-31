@@ -1,6 +1,4 @@
-template "/etc/apache2/sites-available/default" do
+template "/etc/apache2/sites-available/000-default.conf" do
 	source "site-default.erb"
-	mode '0440'
-  owner 'ubuntu'
-  group 'ubuntu'
+	mode 0440
 end
