@@ -48,6 +48,7 @@ unless node[:project].nil?
         execute "run_deploy" do
           user "ubuntu"
           group "ubuntu"
+          cwd "/home/ubuntu"
           command "./deploy_dist"
         end
         
