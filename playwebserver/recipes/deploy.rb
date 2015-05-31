@@ -40,9 +40,7 @@ unless node[:project].nil?
         log " --- START to run script " + script_name + " --- "
         cookbook_file "/home/ubuntu/deploy_dist" do
           source "#{script_name}"
-          mode "0755"
-          user "ubuntu"
-          group "ubuntu"
+          mode 0755
         end
 
         execute "run_deploy" do
