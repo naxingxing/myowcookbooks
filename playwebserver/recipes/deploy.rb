@@ -2,18 +2,23 @@
 
 log "\n\n=================================== playwebserver::deploy - START ==================================== \n"
 
-
-
+=begin
+{
+  "project" : {
+    "name" : "<projectname>",
+    "domain" : "yoyo.com"
+  }
+}
+=end
 
 log "\n\n=================================== playwebserver::deploy - RUNNING ==================================== \n"
 
 unless node[:project].nil?
-  log "\n\n\n\n\nThis is awesome!!! \n #{node[:project][:name]} - #{node[:project][:domain]}\n\n\n\n"
-  #log "\n\n#{node[:deploy][node[:project][:name]][:scm][:repository]} - good test 1\n\n"
+  log "\n\n #{node[:project][:name]} - #{node[:project][:domain]} \n\n"
   apps = node[:opsworks][:applications]
   unless apps.nil?
     apps.each do |app|
-      log "#{app[:name]} #{app[:application_type]} good test"
+      #log "#{app[:name]} #{app[:application_type]} good test"
       aname = app[:name]
       if aname == node[:project][:name]
         log "\n\n --- Deploying #{aname} --- \n\n"
