@@ -1,6 +1,6 @@
 
 
-log "\n\n=================================== playwebserver::deploy - START ==================================== \n"
+log "=================================== playwebserver::deploy - START ===================================="
 
 =begin
 {
@@ -11,10 +11,10 @@ log "\n\n=================================== playwebserver::deploy - START =====
 }
 =end
 
-log "\n\n=================================== playwebserver::deploy - RUNNING ==================================== \n"
+log "=================================== playwebserver::deploy - RUNNING ===================================="
 
 unless node[:project].nil?
-  log "\n\n #{node[:project][:name]} - #{node[:project][:domain]} \n\n"
+  log "project name : #{node[:project][:name]} - project domain : #{node[:project][:domain]}"
   apps = node[:opsworks][:applications]
   unless apps.nil?
     apps.each do |app|
@@ -53,5 +53,21 @@ unless node[:project].nil?
       end
     end
   end
+  
+else
+  
+  log "\n\n Nothing to deploy! Please check your json input. \n\n"
+  
 end
-log "\n\n==================================== playwebserver::deploy - END ===================================== \n"
+
+log "==================================== playwebserver::deploy - END ====================================="
+
+
+
+
+
+
+
+
+
+

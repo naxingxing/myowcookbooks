@@ -3,7 +3,7 @@
 
 unless node[:project].nil?
   
-  log "\n\nThis is awesome!!! \n #{node[:project][:name]} - #{node[:project][:domain]}\n\n"
+  #log "\n\nThis is awesome!!! \n #{node[:project][:name]} - #{node[:project][:domain]}\n\n"
  
   apps = node[:opsworks][:applications]
   unless apps.nil?
