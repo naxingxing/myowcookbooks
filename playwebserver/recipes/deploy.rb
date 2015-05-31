@@ -30,8 +30,6 @@ unless node[:project].nil?
           git "#{repourl}" do
             repository "#{repourl}"
             action :sync
-            user "ubuntu"
-            group "ubuntu"
             destination "/home/ubuntu/download/#{pname}"
           end
         end
