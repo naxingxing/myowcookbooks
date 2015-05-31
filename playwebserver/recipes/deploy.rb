@@ -38,18 +38,21 @@ unless node[:project].nil?
 
         script_name = "deploy" + pname + ".sh"
         log " --- START to run script " + script_name + " --- "
-        cookbook_file "/tmp/deploy_dist" do
+        cookbook_file "/home/ubuntu/deploy_dist" do
           source "#{script_name}"
-          mode '0755'
-          user 'ubuntu'
+          mode "0755"
+          user "ubuntu"
+          group "ubuntu"
         end
 
         execute "run_deploy" do
           user "ubuntu"
-          cwd "/tmp"
+          group "ubuntu"
           command "./deploy_dist"
         end
+        
         log " --- END to run script " + script_name + " --- "
+        
       end
     end
   end
