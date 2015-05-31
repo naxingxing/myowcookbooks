@@ -16,7 +16,7 @@ unless node[:project].nil?
       if app[:name] == node[:project][:name]
         log "\n\n - hello world!!!\n\n"
         pname = node[:project][:name]
-        log "pname is " + pname + " and test - #{node[:deploy][\\"#{pname}\\"][:scm][:repository]}"
+        log "pname is " + pname + ' and test - #{node[:deploy]["#{pname}"][:scm][:repository]}'
       end
     end
   end
