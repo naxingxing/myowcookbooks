@@ -14,7 +14,9 @@ unless node[:project].nil?
     node[:opsworks][:applications].each do |app|
       log "#{app[:name]} #{app[:application_type]} good test"
       if app[:name] == node[:project][:name]
-        log "\n\nhello world!!!\n\n"
+        log "\n\n - hello world!!!\n\n"
+        pname = node[:project][:name]
+        log "pname is ", pname, " and test - node[:deploy]['#{$pname}'][:scm][:repository]"
       end
     end
   end
