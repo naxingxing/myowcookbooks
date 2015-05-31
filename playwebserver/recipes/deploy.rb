@@ -14,12 +14,22 @@ unless node[:project].nil?
   unless apps.nil?
     apps.each do |app|
       log "#{app[:name]} #{app[:application_type]} good test"
-      if app[:name] == node[:project][:name]
-        log "\n\n - hello world!!!\n\n"
+      aname = app[:name]
+      if aname == node[:project][:name]
+        log "\n\n --- Deploying #{aname} --- \n\n"
         pname = node[:project][:name]
+        
         repourl = node[:deploy]["#{pname}"][:scm][:repository]
         
-        
+        unless repourl.nil?
+          git repourl do
+            repository repourl
+            action :sync
+            user "ubuntu"
+            group "ubuntu"
+            destination "/home/ubuntu/download/#{pname}"
+          end
+        end
 
  
         
