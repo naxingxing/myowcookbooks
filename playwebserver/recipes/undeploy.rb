@@ -17,9 +17,9 @@ unless node[:project].nil?
         log "\n\n --- Undeploying #{aname} app --- \n\n"
         
         script_name = "undeploy" + aname + ".sh"
-        
+        log " --- START to run script " + script_name + " --- "
         cookbook_file "/tmp/undeploy_dist" do
-          source script_name
+          source "#{script_name}"
           mode "0755"
           user "ubuntu"
         end
@@ -29,7 +29,7 @@ unless node[:project].nil?
           cwd "/tmp"
           command "./undeploy_dist"
         end
-        
+        log " --- END to run script " + script_name + " --- "
       end
       
     end

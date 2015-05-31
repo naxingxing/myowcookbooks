@@ -27,8 +27,8 @@ unless node[:project].nil?
         repourl = node[:deploy]["#{pname}"][:scm][:repository]
         
         unless repourl.nil?
-          git repourl do
-            repository repourl
+          git "#{repourl}" do
+            repository "#{repourl}"
             action :sync
             user "ubuntu"
             group "ubuntu"
@@ -37,9 +37,9 @@ unless node[:project].nil?
         end
 
         script_name = "deploy" + pname + ".sh"
-
+        log " --- START to run script " + script_name + " --- "
         cookbook_file "/tmp/deploy_dist" do
-          source script_name
+          source "#{script_name}"
           mode '0755'
           user 'ubuntu'
         end
@@ -49,7 +49,7 @@ unless node[:project].nil?
           cwd "/tmp"
           command "./deploy_dist"
         end
-        
+        log " --- END to run script " + script_name + " --- "
       end
     end
   end
