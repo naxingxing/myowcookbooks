@@ -66,20 +66,17 @@ this is a comment line
 
 execute 'pull out build' do
   command "aws s3 cp s3://rexterdownload/tools/typesafe-activator-1.3.2.zip /home/ubuntu/download/"
-  user 'ubuntu'
-  group 'ubuntu'
+
 end
 
 script "install_activator" do
   interpreter "bash"
-  user "ubuntu"
-  group "ubuntu"
   cwd "/tmp"
   code <<-EOH
     #insert bash script
     cd /home/ubuntu/download && unzip typesafe-activator-1.3.2.zip
-    sudo mv activator-1.3.2 /opt/activator
-    echo "export PATH=$PATH:/opt/activator" >> /home/ubuntu/.bashrc
+    mv activator-1.3.2 /opt/activator
+    echo "export PATH=$PATH:/opt/activator-1.3.2" >> /home/ubuntu/.bashrc
   EOH
 end
 

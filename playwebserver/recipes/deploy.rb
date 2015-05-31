@@ -5,7 +5,7 @@ log "=================================== playwebserver::deploy - START =========
 =begin
 {
   "project" : {
-    "name" : "<projectname>",
+    "name" : "hyyqsite",
     "domain" : "yoyo.com"
   }
 }
@@ -37,15 +37,16 @@ unless node[:project].nil?
         end
 
         script_name = "deploy" + pname + ".sh"
+        
         log " --- START to run script " + script_name + " --- "
-        cookbook_file "/home/ubuntu/deploy_dist" do
+        
+        cookbook_file "/tmp/deploy_dist" do
           source "#{script_name}"
           mode 0755
         end
 
         execute "run_deploy" do
-          user "root"
-          cwd "/home/ubuntu"
+          cwd "/tmp"
           command "./deploy_dist"
         end
         
