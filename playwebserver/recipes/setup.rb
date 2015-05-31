@@ -75,7 +75,8 @@ script "install_activator" do
   code <<-EOH
     #insert bash script
     cd /home/ubuntu/download && unzip typesafe-activator-1.3.2.zip
-    mv activator-1.3.2 /opt/activator
+    mv activator-1.3.2 /opt/activator-1.3.2
+    chmod a+x /opt/activator-1.3.2/activator
     echo "export PATH=$PATH:/opt/activator-1.3.2" >> /home/ubuntu/.bashrc
   EOH
 end
