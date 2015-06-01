@@ -38,8 +38,7 @@ unless node[:project].nil?
         
         log " --- START to run script " + script_name + " --- "
         
-        script script_name do
-          interpreter "bash"
+        bash "run_deploy" do
           cwd "/tmp"
           code <<-EOH
             #insert bash script
