@@ -11,7 +11,7 @@ mkdir line2_ed
 wait
 mkdir line3_st
 cp target/universal/hyyqsite-1.0-SNAPSHOT.zip /home/ubuntu/deployment/
-mkdir line3_ed);
+mkdir line3_ed
 wait
 mkdir line4_st
 cd /home/ubuntu/deployment
