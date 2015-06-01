@@ -74,8 +74,8 @@ script "install_sbt" do
   code <<-EOH
     #insert bash script
     echo "deb http://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-    sudo apt-get update
-    sudo apt-get install sbt
+    sudo apt-get -y update
+    sudo apt-get -y install sbt
   EOH
 end
 
