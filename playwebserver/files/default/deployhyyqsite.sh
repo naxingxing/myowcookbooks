@@ -5,7 +5,7 @@
 
 
 cd /home/ubuntu/download/hyyqsite
-sudo activator dist && mkdir this_is_test
+mkdir test_st && sudo activator dist && mkdir test_ed
 cp target/universal/hyyqsite-1.0-SNAPSHOT.zip /home/ubuntu/deployment/;
 cd /home/ubuntu/deployment && unzip hyyqsite-1.0-SNAPSHOT.zip;
 
