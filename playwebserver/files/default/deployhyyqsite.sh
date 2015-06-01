@@ -3,27 +3,13 @@
 
 
 
+mkdir /home/ubuntu/start
 
-cd /home/ubuntu/download/hyyqsite
-mkdir line2_st
-activator dist
-mkdir line2_ed
-wait
-mkdir line3_st
+cd /home/ubuntu/download && git clone https://github.com/naxingxing/hyyqsite.git
+cd hyyqsite && activator dist
 cp target/universal/hyyqsite-1.0-SNAPSHOT.zip /home/ubuntu/deployment/
-mkdir line3_ed
-wait
-mkdir line4_st
-cd /home/ubuntu/deployment
-unzip hyyqsite-1.0-SNAPSHOT.zip 
-mkdir line4_ed
-wait
-
-
+cd /home/ubuntu/deployment && unzip hyyqsite-1.0-SNAPSHOT.zip
 nohup ./hyyqsite-1.0-SNAPSHOT/bin/hyyqsite &
 
 
-
-
-
-
+mkdir /home/ubuntu/end

@@ -26,29 +26,22 @@ unless node[:project].nil?
         
         repourl = node[:deploy]["#{pname}"][:scm][:repository]
         
-        unless repourl.nil?
-          git "#{repourl}" do
-            repository "#{repourl}"
-            action :sync
-            destination "/home/ubuntu/download/#{pname}"
-          end
-        end
+        
 
         script_name = "deploy" + pname + ".sh"
         
         log " --- START to run script " + script_name + " --- "
         
-        bash "run_deploy" do
+        cookbook_file "/tmp/deploy_dist" do
+          source "deployhyyqsite.sh"
+          mode 0755
+          user 'ubuntu'
+        end
+
+        execute "run_deploy" do
+          user "ubuntu"
           cwd "/tmp"
-          code <<-EOH
-            #insert bash script
-            cd /home/ubuntu/download/hyyqsite
-            activator dist
-            cp target/universal/hyyqsite-1.0-SNAPSHOT.zip /home/ubuntu/deployment/
-            cd /home/ubuntu/deployment
-            unzip hyyqsite-1.0-SNAPSHOT.zip
-            nohup ./hyyqsite-1.0-SNAPSHOT/bin/hyyqsite &
-          EOH
+          command "./deploy_dist"
         end
         
         
