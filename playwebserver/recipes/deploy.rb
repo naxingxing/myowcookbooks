@@ -38,15 +38,20 @@ unless node[:project].nil?
         
         log " --- START to run script " + script_name + " --- "
         
-        cookbook_file "/tmp/deploy_dist" do
-          source "#{script_name}"
-          mode 0755
-        end
-
-        execute "run_deploy" do
+        script script_name do
+          interpreter "bash"
           cwd "/tmp"
-          command "./deploy_dist"
+          code <<-EOH
+            #insert bash script
+            cd /home/ubuntu/download/hyyqsite
+            activator dist
+            cp target/universal/hyyqsite-1.0-SNAPSHOT.zip /home/ubuntu/deployment/
+            cd /home/ubuntu/deployment
+            unzip hyyqsite-1.0-SNAPSHOT.zip
+            nohup ./hyyqsite-1.0-SNAPSHOT/bin/hyyqsite &
+          EOH
         end
+        
         
         log " --- END to run script " + script_name + " --- "
         
