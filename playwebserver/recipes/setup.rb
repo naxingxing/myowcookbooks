@@ -68,6 +68,17 @@ execute 'pull out build' do
   command "aws s3 cp s3://rexterdownload/tools/typesafe-activator-1.3.2.zip /home/ubuntu/download/"
 end
 
+script "install_sbt" do
+  interpreter "bash"
+  cwd "/tmp"
+  code <<-EOH
+    #insert bash script
+    echo "deb http://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+    sudo apt-get update
+    sudo apt-get install sbt
+  EOH
+end
+
 script "install_activator" do
   interpreter "bash"
   cwd "/tmp"
