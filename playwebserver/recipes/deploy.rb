@@ -13,6 +13,12 @@ log "=================================== playwebserver::deploy - START =========
 
 log "=================================== playwebserver::deploy - RUNNING ===================================="
 
+ruby_block "initialize" do
+  block do
+    ENV['PATH'] = "#{ENV['PATH']}:/opt/activator-1.3.2"
+  end
+end
+
 unless node[:project].nil?
   log "project name : #{node[:project][:name]} - project domain : #{node[:project][:domain]}"
   apps = node[:opsworks][:applications]
@@ -38,7 +44,12 @@ unless node[:project].nil?
         
         log " --- START to run script " + script_name + " --- "
         
-        execute 'trydep1' do
+        env 'M2_HOME' do
+            value node['maven']['m2_home']
+            action :create
+          end
+        
+        execute 'trydep2' do
           command "cd /home/ubuntu/download/hyyqsite && activator dist"
         end
         
