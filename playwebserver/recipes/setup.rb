@@ -70,7 +70,7 @@ if node[:project].nil?
   end
 else
   execute 'pull out build' do
-    command "wget --directory-prefix=/home/ubuntu/download/ https://s3-ap-southeast-1.amazonaws.com/rexterdownload/tools/typesafe-activator-1.3.2.zip"
+    command "wget -N --directory-prefix=/home/ubuntu/download/ https://s3-ap-southeast-1.amazonaws.com/rexterdownload/tools/typesafe-activator-1.3.2.zip"
   end
 end
 
