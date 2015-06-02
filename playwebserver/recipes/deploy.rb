@@ -44,10 +44,7 @@ unless node[:project].nil?
         
         log " --- START to run script " + script_name + " --- "
         
-        env 'M2_HOME' do
-            value node['maven']['m2_home']
-            action :create
-          end
+        
         
         execute 'trydep2' do
           command "cd /home/ubuntu/download/hyyqsite && activator dist"
