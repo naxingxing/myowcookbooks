@@ -13,6 +13,8 @@ log "=================================== playwebserver::deploy - START =========
 
 log "=================================== playwebserver::deploy - RUNNING ===================================="
 
+
+# This is important for the build phase. Without the setting, the sh script will not know activator cmd.
 ruby_block "initialize" do
   block do
     ENV['PATH'] = "#{ENV['PATH']}:/opt/activator-1.3.2"
@@ -44,10 +46,21 @@ unless node[:project].nil?
         
         log " --- START to run script " + script_name + " --- "
         
-        
-        
-        execute 'trydep2' do
+        execute 'buildzip' do
           command "cd /home/ubuntu/download/hyyqsite && activator dist"
+        end
+        
+        cookbook_file "/home/ubuntu/deploy_dist" do
+          source "#{script_name}"
+          mode 0755
+          user "ubuntu"
+          group "ubuntu"
+        end
+
+        execute "run_deploy" do
+          user "ubuntu"
+          group "ubuntu"
+          command "./deploy_dist"
         end
         
         log " --- END to run script " + script_name + " --- "
