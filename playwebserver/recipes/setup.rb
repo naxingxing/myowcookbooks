@@ -64,8 +64,14 @@ this is a comment line
 
 =end
 
-execute 'pull out build' do
-  command "aws s3 cp s3://rexterdownload/tools/typesafe-activator-1.3.2.zip /home/ubuntu/download/"
+if node[:project].nil?
+  execute 'pull out build' do
+    command "aws s3 cp s3://rexterdownload/tools/typesafe-activator-1.3.2.zip /home/ubuntu/download/"
+  end
+else
+  execute 'pull out build' do
+    command "wget --directory-prefix=/home/ubuntu/download/ https://s3-ap-southeast-1.amazonaws.com/rexterdownload/tools/typesafe-activator-1.3.2.zip"
+  end
 end
 
 script "install_sbt" do
