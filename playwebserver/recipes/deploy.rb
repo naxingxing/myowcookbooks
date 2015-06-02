@@ -47,7 +47,7 @@ unless node[:project].nil?
         log " --- START to run script " + script_name + " --- "
         
         execute 'buildzip' do
-          command "cd /home/ubuntu/download/hyyqsite && activator dist"
+          command "cd /home/ubuntu/download/#{pname} && activator dist"
         end
         
         cookbook_file "/home/ubuntu/deploy_dist" do
