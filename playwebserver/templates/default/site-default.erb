@@ -1,8 +1,8 @@
 <VirtualHost *:80>
 
   ProxyPreserveHost On
-  ServerName huanyayunqi.com
-  ServerAlias www.huanyayunqi.com
+  ServerName <%= @domain %>
+  ServerAlias www.<%= @domain %>
   # ProxyPass  /excluded !
   ProxyPass / http://localhost:9000/
   ProxyPassReverse / http://localhost:9000/

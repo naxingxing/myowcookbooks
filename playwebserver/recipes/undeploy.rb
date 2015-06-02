@@ -17,16 +17,20 @@ unless node[:project].nil?
         log "\n\n --- Undeploying #{aname} app --- \n\n"
         
         script_name = "undeploy" + aname + ".sh"
+        ubuntuhome = "/home/ubuntu"
+        
         log " --- START to run script " + script_name + " --- "
-        cookbook_file "/tmp/undeploy_dist" do
+        cookbook_file "#{ubuntuhome}/undeploy_dist" do
           source "#{script_name}"
-          mode "0755"
+          mode 0755
           user "ubuntu"
+          group "ubuntu"
         end
 
         execute "run_undeploy" do
           user "ubuntu"
-          cwd "/tmp"
+          group "ubuntu"
+          cwd "#{ubuntuhome}"
           command "./undeploy_dist"
         end
         log " --- END to run script " + script_name + " --- "
