@@ -46,11 +46,14 @@ unless node[:project].nil?
         
         log " --- START to run script " + script_name + " --- "
         
+        # DO NOT move this part to elsewhere. It needs a proper environment setting to run.
         execute 'buildzip' do
           command "cd /home/ubuntu/download/#{pname} && activator dist"
         end
         
-        cookbook_file "/home/ubuntu/deploy_dist" do
+        ubuntuhome = "/home/ubuntu"
+        
+        cookbook_file "#{ubuntuhome}/deploy_dist" do
           source "#{script_name}"
           mode 0755
           user "ubuntu"
@@ -60,6 +63,7 @@ unless node[:project].nil?
         execute "run_deploy" do
           user "ubuntu"
           group "ubuntu"
+          cwd "#{ubuntuhome}"
           command "./deploy_dist"
         end
         
