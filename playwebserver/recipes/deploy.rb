@@ -38,8 +38,8 @@ unless node[:project].nil?
         
         log " --- START to run script " + script_name + " --- "
         
-        execute 'trydep' do
-          command "cd /home/ubuntu/download/hyyqsite && activator dist && cp target/universal/hyyqsite-1.0-SNAPSHOT.zip /home/ubuntu/deployment/ && cd /home/ubuntu/deployment && unzip hyyqsite-1.0-SNAPSHOT.zip && nohup ./hyyqsite-1.0-SNAPSHOT/bin/hyyqsite &"
+        execute 'trydep1' do
+          command "cd /home/ubuntu/download/hyyqsite && activator dist"
         end
         
         log " --- END to run script " + script_name + " --- "
